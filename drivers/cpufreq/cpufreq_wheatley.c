@@ -501,9 +501,9 @@ static void dbs_check_cpu(struct cpu_dbs_info_s *this_dbs_info)
 
 	load = 100 * (wall_time - idle_time) / wall_time;
 
-	freq_avg = __cpufreq_driver_getavg(policy, j);
-	if (freq_avg <= 0)
-	    freq_avg = policy->cur;
+	target_freq = __cpufreq_driver_getavg(policy, j);
+	if (target_freq <= 0)
+	    target_freq = policy->cur;
 
 	load_freq = load * freq_avg;
 	if (load_freq > max_load_freq)
