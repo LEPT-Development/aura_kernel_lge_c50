@@ -450,7 +450,7 @@ static void dbs_check_cpu(struct cpu_dbs_info_s *this_dbs_info)
 	cputime64_t cur_wall_time, cur_idle_time, cur_iowait_time;
 	unsigned int idle_time, wall_time, iowait_time;
 	unsigned int load, load_freq;
-	int freq_avg;
+	int target_freq;
 	struct cpuidle_device * j_cpuidle_dev = NULL;
 //	struct cpuidle_state * deepidle_state = NULL;
 //	unsigned long long deepidle_time, deepidle_usage;
