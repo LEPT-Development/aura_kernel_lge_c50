@@ -450,7 +450,7 @@ static void dbs_check_cpu(struct cpu_dbs_info_s *this_dbs_info)
 	cputime64_t cur_wall_time, cur_idle_time, cur_iowait_time;
 	unsigned int idle_time, wall_time, iowait_time;
 	unsigned int load, load_freq;
-	int target_freq;
+	int freq_avg;
 	struct cpuidle_device * j_cpuidle_dev = NULL;
 //	struct cpuidle_state * deepidle_state = NULL;
 //	unsigned long long deepidle_time, deepidle_usage;
@@ -501,9 +501,9 @@ static void dbs_check_cpu(struct cpu_dbs_info_s *this_dbs_info)
 
 	load = 100 * (wall_time - idle_time) / wall_time;
 
-	target_freq = __cpufreq_driver_getavg(policy, j);
-	if (target_freq <= 0)
-	    target_freq = policy->cur;
+	freq_avg = __cpufreq_driver_getavg(policy, j);
+	if (freq_avg <= 0)
+	    freq_avg = policy->cur;
 
 	load_freq = load * freq_avg;
 	if (load_freq > max_load_freq)
